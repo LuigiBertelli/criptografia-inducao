@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/png" href="./favicon.ico"/>
+        <title>Criptografia por indução</title>
+        <link rel="stylesheet" href="./styles/main.css">
+        <script type="text/javascript" src="/eel.js"></script>
+        <script type='text/javascript'>
+        
+            function clearInput(el)
+            {
+                const spanError = el.parentNode.lastElementChild;
+                spanError.innerHTML = '';
+                el.className = el.className.replace(' error', '');
+            }
+
+            function validateMsg(msg)
+            {
+                const upperBound = 160;
+                const lowerBound = 33;
+
+                for(let i = 0; i < msg.length; i++)
+                {
+                    const charCode = msg.charCodeAt(i);
+                    if(charCode > upperBound || charCode < lowerBound)
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            async function encrypt() {
+                const encryptErrorMessage = 'Texto inválido!';
+
+                let msgInput = document.getElementById('decrypted');
+
+                if(!validateMsg(msgInput.value))
+                {
+                    msgInput.className = msgInput.className + ' error';
+                    const spanError = msgInput.parentNode.lastElementChild;
+                    spanError.innerHTML = encryptErrorMessage;
+                    return;
+                }
+
+                let encryptedInput = document.getElementById('encrypted');
+
+                let encryptedMsg = await eel.encrypt(msgInput.value)();
+                encryptedInput.value = encryptedMsg;
+            }
+
+            async function decrypt() {
+                const decryptErrorMessage = 'Criptografia inválida!';
+                let msgInput = document.getElementById('encrypted');
+
+                if(!await eel.isDecriptable(msgInput.value)())
+                {
+                    msgInput.className = msgInput.className + ' error';
+                    const spanError = msgInput.parentNode.lastElementChild;
+                    spanError.innerHTML = decryptErrorMessage;
+                    return;
+                }
+
+                let decryptedInput = document.getElementById('decrypted');
+                let decryptedMsg = await eel.decrypt(msgInput.value)();
+                decryptedInput.value = decryptedMsg;
+            }
+
+            </script>
+    </head>
+    <body>
+        <main>
+            <section class="crypt-card">
+                <article class="crypt-title-article">
+                    <img class="fatec-seg-logo" src="images/fatec-seg.png" alt="logo do curso de segurança da informação da FATEC"/>
+                    <h1 class="crypt-title">Criptografando...</h1>
+                </article>
+
+                <section class="input-text-section">
+                    <input id="decrypted" type="text" placeholder="Mensagem descriptografada" class="input-text" onfocus="clearInput(this)"/>
+                    <span class="text-error"></span>
+                </section>
+                
+                <section class="btn-section">
+                    <button class="btn primary" onclick="encrypt()">Criptografar</button>
+                    <button class="btn secondary" onclick="decrypt()">Descriptografar</button>
+                </section>
+
+                <section class="input-text-section">
+                    <input id="encrypted" type="text" placeholder="Mensagem criptografada" class="input-text" onfocus="clearInput(this)"/>
+                    <span class="text-error"></span>
+                </section>
+            </section>
+        </main>
+    </body>
+</html>

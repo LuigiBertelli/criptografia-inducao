@@ -1,0 +1,106 @@
+html, body{
+    margin: 0;
+}
+
+html{
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.crypt-card{
+    margin: 0 auto;
+    margin-top: 5%;
+    width: 25%;
+    padding: 4rem;
+    display: flex;
+    flex-flow: column;
+    gap: 1rem;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0.5px -1px 8px rgba(0, 0, 0, 0.4);
+}
+
+.crypt-title-article{
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.fatec-seg-logo{
+    width: 40px;
+    height: 40px;
+}
+
+.crypt-title{
+    font-weight: 700;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: xx-large;
+    justify-content: center;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 2%;
+}
+
+.input-text-section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: 3s;
+}
+
+.input-text{
+    max-width: 100%;
+    padding: 0.75rem;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.42);
+    font-size: medium;
+}
+
+.input-text.error{
+    border-color: rgb(249, 0, 0);
+}
+
+.text-error{
+    color: rgb(249, 0, 0);
+    font-size: medium;
+}
+
+.btn-section{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.btn{
+    background-color: black;
+    color:rgb(236, 235, 235);
+    font-weight: 600;
+    padding: 1rem;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0);
+    font-size: medium;
+    cursor: pointer;
+    width: 45%;
+    transition: 0.3s;
+    opacity: 0.85;
+    word-wrap: break-word;
+}
+
+.btn.secondary{
+    opacity: 0.75;
+    background-color: rgb(236, 235, 235);
+    color: black;
+}
+
+.btn:hover{
+    opacity: 1;
+    border-style: double;
+}
+
+.btn.primary:hover{
+    border-top-color: rgb(142, 28, 28);
+    border-left-color: rgb(142, 28, 28);
+}
